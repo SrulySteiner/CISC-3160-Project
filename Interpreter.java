@@ -63,10 +63,12 @@ public class Interpreter {
         }
         return result;
     }
-    //potential problem: an expression could end up being an identifier, which is supposed
-    //to be another previously assigned value - that would return a String, and require evaulation of the 
-    //previous elements in the arraylist to be evaluated first - not sure what to do about that
-    //maybe check through previous map entrys for the key and get its value pair
+    /*potential problem: an expression could end up being an identifier, which is supposed
+    *to be another previously assigned value - that would return a String, and require evaulation of the 
+    *previous elements in the arraylist to be evaluated first - not sure what to do about that
+    maybe check through previous map entrys for the key and get its value pair 
+    edit: solved using above method
+    */
     public static int parseExpression (Deque<String> s){
         int value = parseTerm(s);
         while (s.peek().equals("+") || s.peek().equals("-")){
@@ -91,7 +93,7 @@ public class Interpreter {
         }
         return value;
     }
-
+    //solved unary operator problems - was missing s.remove() for each operator, which was causing an infite recursive loop
     public static int parseFactor(Deque<String> s) throws IllegalArgumentException{
         int value;
         if (s.peek().equals("(")){
@@ -102,9 +104,11 @@ public class Interpreter {
             }
         }
         else if (s.peek().equals("-")){
+            s.remove();
             value = -parseFactor(s);
         }
-        else if (s.peek().equals("+")){
+        else if (s.peek().equals("+")){            
+            s.remove();
             value = +parseFactor(s);
         }
         else if (s.peek().matches("\\d")){
