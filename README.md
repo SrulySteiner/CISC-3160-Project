@@ -2,7 +2,7 @@
 Repository for CISC 3160 Project at Brooklyn College
 
 Solved with help from the following resources:
-[Ohio State CSE 2231 Slides]((https://web.cse.ohio-state.edu/software/2231/web-sw2/extras/slides/))
+[Ohio State CSE 2231 Slides](https://web.cse.ohio-state.edu/software/2231/web-sw2/extras/slides/)
 
 Based on the following prompt:
 
